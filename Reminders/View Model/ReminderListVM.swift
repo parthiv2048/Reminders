@@ -7,7 +7,7 @@
 
 protocol ReminderListVMProtocol {
     func getReminder(at: Int) -> ReminderModel?
-    func numberOfReminders() -> Int
+    func numberOfReminders() -> Int?
     func getReminderList() -> [ReminderModel]?
 }
 
@@ -22,8 +22,8 @@ class ReminderListVM: ReminderListVMProtocol {
         return reminderList?[at]
     }
     
-    func numberOfReminders() -> Int {
-        return reminderList?.count ?? 0
+    func numberOfReminders() -> Int? {
+        return reminderList?.count
     }
     
     func getReminderList() -> [ReminderModel]? {
