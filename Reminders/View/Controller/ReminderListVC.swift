@@ -13,7 +13,7 @@ class ReminderListVC: UIViewController {
         let header = UILabel()
         header.text = "Reminder List"
         header.textColor = .black
-        header.font = UIFont.boldSystemFont(ofSize: 25)
+        header.font = UIFont.boldSystemFont(ofSize: SizeConstraints.headerFontSize.rawValue)
         header.translatesAutoresizingMaskIntoConstraints = false
         
         return header

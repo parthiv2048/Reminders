@@ -13,7 +13,7 @@ class ReminderListTVC: UITableViewCell {
         let titleLabel = UILabel()
         titleLabel.textColor = .black
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: SizeConstraints.bodyFontSize.rawValue)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return titleLabel
@@ -22,7 +22,7 @@ class ReminderListTVC: UITableViewCell {
     private lazy var descriptionLabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.textColor = .black
-        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.font = UIFont.systemFont(ofSize: SizeConstraints.bodyFontSize.rawValue)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -32,7 +32,7 @@ class ReminderListTVC: UITableViewCell {
     private lazy var timeLabel = {
         let timeLabel = UILabel()
         timeLabel.textColor = .systemBlue
-        timeLabel.font = UIFont.systemFont(ofSize: 16)
+        timeLabel.font = UIFont.systemFont(ofSize: SizeConstraints.bodyFontSize.rawValue)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return timeLabel

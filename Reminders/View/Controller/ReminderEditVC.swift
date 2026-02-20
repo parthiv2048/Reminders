@@ -12,11 +12,9 @@ class ReminderEditVC: UIViewController {
     private lazy var editTitleTF = {
         let editTitleTF = UITextField()
         editTitleTF.textColor = .black
-        editTitleTF.font = UIFont.boldSystemFont(ofSize: 25)
-        editTitleTF.layer.borderColor = UIColor.gray.cgColor
-        editTitleTF.layer.borderWidth = 0.5
-        editTitleTF.layer.cornerRadius = 8
-        editTitleTF.textAlignment = .center
+        editTitleTF.font = UIFont.boldSystemFont(ofSize: SizeConstraints.headerFontSize.rawValue)
+        editTitleTF.layer.cornerRadius = SizeConstraints.cornerRadius.rawValue
+        editTitleTF.textAlignment = .left
         editTitleTF.translatesAutoresizingMaskIntoConstraints = false
         
         return editTitleTF
@@ -26,10 +24,10 @@ class ReminderEditVC: UIViewController {
         let editDescriptionTV = UITextView()
         editDescriptionTV.contentInsetAdjustmentBehavior = .automatic
         editDescriptionTV.textColor = .black
-        editDescriptionTV.font = UIFont.systemFont(ofSize: 18)
+        editDescriptionTV.font = UIFont.systemFont(ofSize: SizeConstraints.bodyFontSize.rawValue)
         editDescriptionTV.layer.borderColor = UIColor.gray.cgColor
-        editDescriptionTV.layer.borderWidth = 0.5
-        editDescriptionTV.layer.cornerRadius = 8
+        editDescriptionTV.layer.borderWidth = SizeConstraints.borderWidth.rawValue
+        editDescriptionTV.layer.cornerRadius = SizeConstraints.cornerRadius.rawValue
         editDescriptionTV.isEditable = true
         editDescriptionTV.isSelectable = true
         editDescriptionTV.translatesAutoresizingMaskIntoConstraints = false
@@ -56,10 +54,10 @@ class ReminderEditVC: UIViewController {
     private lazy var saveButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = SizeConstraints.cornerRadius.rawValue
         button.tintColor = .white
         button.backgroundColor = .systemBlue
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: SizeConstraints.bodyFontSize.rawValue)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction { _ in
@@ -114,16 +112,16 @@ class ReminderEditVC: UIViewController {
             editTitleTF.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             editTitleTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             
-            editDescriptionTV.topAnchor.constraint(equalTo: editTitleTF.bottomAnchor, constant: 15),
+            editDescriptionTV.topAnchor.constraint(equalTo: editTitleTF.bottomAnchor, constant: 20),
             editDescriptionTV.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             editDescriptionTV.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            editDescriptionTV.heightAnchor.constraint(equalToConstant: 150),
+            editDescriptionTV.heightAnchor.constraint(equalToConstant: 300),
             
-            editDayDP.topAnchor.constraint(equalTo: editDescriptionTV.bottomAnchor, constant: 15),
-            editDayDP.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            editDayDP.topAnchor.constraint(equalTo: editDescriptionTV.bottomAnchor, constant: 20),
+            editDayDP.leadingAnchor.constraint(equalTo: editDescriptionTV.leadingAnchor),
             
-            editTimeDP.topAnchor.constraint(equalTo: editDayDP.bottomAnchor, constant: 15),
-            editTimeDP.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            editTimeDP.topAnchor.constraint(equalTo: editDescriptionTV.bottomAnchor, constant: 20),
+            editTimeDP.leadingAnchor.constraint(equalTo: editDayDP.trailingAnchor, constant: 10),
             
             saveButton.topAnchor.constraint(equalTo: editTimeDP.bottomAnchor, constant: 50),
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
