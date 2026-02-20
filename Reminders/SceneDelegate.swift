@@ -12,20 +12,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let reminderListVM = ReminderListVM(reminderList: [
-            ReminderModel(
-                title: "Unload the Dishwasher",
-                description: "Do this before lunch",
-                day: "Thu Feb 20",
-                time: "1:00 PM"
-            ),
-            ReminderModel(
-                title: "Walk the dog",
-                description: "After work but before it starts to rain. Take the long route.",
-                day: "Thu Feb 20",
-                time: "5:30 PM"
-            ),
-        ])
+//        let reminderListVM = ReminderListVM(reminderList: [
+//            ReminderModel(
+//                title: "Unload the Dishwasher",
+//                description: "Do this before lunch",
+//                day: "Thu Feb 20",
+//                time: "1:00 PM"
+//            ),
+//            ReminderModel(
+//                title: "Walk the dog",
+//                description: "After work but before it starts to rain. Take the long route.",
+//                day: "Thu Feb 20",
+//                time: "5:30 PM"
+//            ),
+//        ])
+        let reminderListVM = ReminderListVM()
         let reminderListVC = ReminderListVC(reminderListVM: reminderListVM)
         let navigationController = UINavigationController(rootViewController: reminderListVC)
         guard let scene = (scene as? UIWindowScene) else { return }

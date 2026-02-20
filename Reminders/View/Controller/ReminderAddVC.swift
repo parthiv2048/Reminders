@@ -38,32 +38,20 @@ class ReminderAddVC: UIViewController {
         return editDescriptionTV
     }()
     
-    private lazy var editDayTF = {
-        let editDayTF = UITextField()
-        editDayTF.placeholder = "Enter Day"
-        editDayTF.textColor = .black
-        editDayTF.font = UIFont.systemFont(ofSize: 18)
-        editDayTF.layer.borderColor = UIColor.gray.cgColor
-        editDayTF.layer.borderWidth = 0.5
-        editDayTF.layer.cornerRadius = 8
-        editDayTF.textAlignment = .center
-        editDayTF.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var addDayDP = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        return editDayTF
+        return datePicker
     }()
     
-    private lazy var editTimeTF = {
-        let editTimeTF = UITextField()
-        editTimeTF.placeholder = "Enter Time"
-        editTimeTF.textColor = .black
-        editTimeTF.font = UIFont.systemFont(ofSize: 18)
-        editTimeTF.layer.borderColor = UIColor.gray.cgColor
-        editTimeTF.layer.borderWidth = 0.5
-        editTimeTF.layer.cornerRadius = 8
-        editTimeTF.textAlignment = .center
-        editTimeTF.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var addTimeDP = {
+        let timePicker = UIDatePicker()
+        timePicker.datePickerMode = .time
+        timePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        return editTimeTF
+        return timePicker
     }()
     
     private lazy var saveButton = {
@@ -76,7 +64,22 @@ class ReminderAddVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction { _ in
-            self.reminderAddVM?.addReminder(title: self.editTitleTF.text, description: self.editDescriptionTV.text, day: self.editDayTF.text, time: self.editTimeTF.text)
+            let selectedDate = self.addDayDP.date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let reminderDay = dateFormatter.string(from: selectedDate)
+            
+            let selectedTime = self.addTimeDP.date
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            let reminderTime = timeFormatter.string(from: selectedTime)
+            
+            self.reminderAddVM?.addReminder(
+                title: self.editTitleTF.text,
+                description: self.editDescriptionTV.text,
+                day: reminderDay,
+                time: reminderTime
+            )
             
             let reminderListVM = ReminderListVM(reminderList: self.reminderAddVM?.getReminderList())
             self.navigationController?.pushViewController(ReminderListVC(reminderListVM: reminderListVM), animated: true)
@@ -105,8 +108,8 @@ class ReminderAddVC: UIViewController {
         view.backgroundColor = .white
         view.addSubview(editTitleTF)
         view.addSubview(editDescriptionTV)
-        view.addSubview(editDayTF)
-        view.addSubview(editTimeTF)
+        view.addSubview(addDayDP)
+        view.addSubview(addTimeDP)
         view.addSubview(saveButton)
         
         addConstraints()
@@ -123,15 +126,13 @@ class ReminderAddVC: UIViewController {
             editDescriptionTV.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             editDescriptionTV.heightAnchor.constraint(equalToConstant: 150),
             
-            editDayTF.topAnchor.constraint(equalTo: editDescriptionTV.bottomAnchor, constant: 15),
-            editDayTF.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            editDayTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
+            addDayDP.topAnchor.constraint(equalTo: editDescriptionTV.bottomAnchor, constant: 15),
+            addDayDP.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            editTimeTF.topAnchor.constraint(equalTo: editDayTF.bottomAnchor, constant: 15),
-            editTimeTF.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            editTimeTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
+            addTimeDP.topAnchor.constraint(equalTo: addDayDP.bottomAnchor, constant: 15),
+            addTimeDP.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            saveButton.topAnchor.constraint(equalTo: editTimeTF.bottomAnchor, constant: 40),
+            saveButton.topAnchor.constraint(equalTo: addTimeDP.bottomAnchor, constant: 50),
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
         ])

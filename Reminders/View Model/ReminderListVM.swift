@@ -15,7 +15,7 @@ protocol ReminderListVMProtocol {
 class ReminderListVM: ReminderListVMProtocol {
     private var reminderList: [ReminderModel]?
     
-    init(reminderList: [ReminderModel]? = nil) {
+    init(reminderList: [ReminderModel]? = []) {
         self.reminderList = reminderList
     }
     
