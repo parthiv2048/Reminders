@@ -1,16 +1,17 @@
 //
-//  ReminderEditVC.swift
+//  ReminderAddVC.swift
 //  Reminders
 //
-//  Created by Parthiv Ganguly on 2/19/26.
+//  Created by Parthiv Ganguly on 2/20/26.
 //
 
 import UIKit
 
-class ReminderEditVC: UIViewController {
+class ReminderAddVC: UIViewController {
     
     private lazy var editTitleTF = {
         let editTitleTF = UITextField()
+        editTitleTF.placeholder = "Enter Title"
         editTitleTF.textColor = .black
         editTitleTF.font = UIFont.boldSystemFont(ofSize: 25)
         editTitleTF.layer.borderColor = UIColor.gray.cgColor
@@ -39,6 +40,7 @@ class ReminderEditVC: UIViewController {
     
     private lazy var editDayTF = {
         let editDayTF = UITextField()
+        editDayTF.placeholder = "Enter Day"
         editDayTF.textColor = .black
         editDayTF.font = UIFont.systemFont(ofSize: 18)
         editDayTF.layer.borderColor = UIColor.gray.cgColor
@@ -52,6 +54,7 @@ class ReminderEditVC: UIViewController {
     
     private lazy var editTimeTF = {
         let editTimeTF = UITextField()
+        editTimeTF.placeholder = "Enter Time"
         editTimeTF.textColor = .black
         editTimeTF.font = UIFont.systemFont(ofSize: 18)
         editTimeTF.layer.borderColor = UIColor.gray.cgColor
@@ -65,31 +68,28 @@ class ReminderEditVC: UIViewController {
     
     private lazy var saveButton = {
         let button = UIButton()
-        button.setTitle("Save", for: .normal)
+        button.setTitle("Add", for: .normal)
         button.layer.cornerRadius = 8
         button.tintColor = .white
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .systemGreen
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction { _ in
-            self.reminderEditVM?.setTitle(newTitle: self.editTitleTF.text)
-            self.reminderEditVM?.setDescription(newDescription: self.editDescriptionTV.text)
-            self.reminderEditVM?.setDay(newDay: self.editDayTF.text)
-            self.reminderEditVM?.setTime(newTime: self.editTimeTF.text)
+            self.reminderAddVM?.addReminder(title: self.editTitleTF.text, description: self.editDescriptionTV.text, day: self.editDayTF.text, time: self.editTimeTF.text)
             
-            let reminderListVM = ReminderListVM(reminderList: self.reminderEditVM?.getReminderList())
+            let reminderListVM = ReminderListVM(reminderList: self.reminderAddVM?.getReminderList())
             self.navigationController?.pushViewController(ReminderListVC(reminderListVM: reminderListVM), animated: true)
         }, for: .touchUpInside)
         
         return button
     }()
     
-    private var reminderEditVM: ReminderEditVMProtocol?
+    private var reminderAddVM: ReminderAddVMProtocol?
     
-    init(reminderEditVM: ReminderEditVMProtocol? = nil) {
+    init(reminderAddVM: ReminderAddVMProtocol? = nil) {
         super.init(nibName: nil, bundle: nil)
-        self.reminderEditVM = reminderEditVM
+        self.reminderAddVM = reminderAddVM
     }
     
     required init?(coder: NSCoder) {
@@ -108,11 +108,6 @@ class ReminderEditVC: UIViewController {
         view.addSubview(editDayTF)
         view.addSubview(editTimeTF)
         view.addSubview(saveButton)
-        
-        editTitleTF.text = reminderEditVM?.getTitle()
-        editDescriptionTV.text = reminderEditVM?.getDescription()
-        editDayTF.text = reminderEditVM?.getDay()
-        editTimeTF.text = reminderEditVM?.getTime()
         
         addConstraints()
     }

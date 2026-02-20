@@ -30,6 +30,12 @@ class ReminderListVC: UIViewController {
         return tableView
     }()
     
+    private lazy var addReminderButton = {
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddReminder))
+        
+        return button
+    }()
+    
     private var reminderListVM: ReminderListVMProtocol?
     
     init(reminderListVM: ReminderListVMProtocol? = nil) {
@@ -51,7 +57,15 @@ class ReminderListVC: UIViewController {
         view.addSubview(reminderListHeaderLabel)
         view.addSubview(reminderListTableView)
         
+        navigationItem.rightBarButtonItem = addReminderButton
+        
         addConstraints()
+    }
+    
+    @objc private func goToAddReminder() {
+        let reminderAddVM = ReminderAddVM(reminderList: reminderListVM?.getReminderList())
+        let reminderAddVC = ReminderAddVC(reminderAddVM: reminderAddVM)
+        self.navigationController?.pushViewController(reminderAddVC, animated: true)
     }
     
     private func addConstraints() {
