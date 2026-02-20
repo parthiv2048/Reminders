@@ -19,7 +19,7 @@ class ReminderAddVM: ReminderAddVMProtocol {
         self.reminderList = reminderList
     }
     
-    func addReminder(title: String?, description: String?, day: Date?, time: Date?) {
+    func addReminder(title: String?, description: String?, day: Date? = Date(), time: Date? = Date()) {
         reminderList?.append(ReminderModel(
             title: title,
             description: description,

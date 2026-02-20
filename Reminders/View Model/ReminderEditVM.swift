@@ -20,44 +20,44 @@ protocol ReminderEditVMProtocol {
 }
 
 class ReminderEditVM: ReminderEditVMProtocol {
-    private var reminder: ReminderModel?
+    private var reminderIndex: Int?
     private var reminderList: [ReminderModel]?
     
-    init(reminder: ReminderModel? = nil, reminderList: [ReminderModel]? = nil) {
-        self.reminder = reminder
+    init(reminderIndex: Int? = 0, reminderList: [ReminderModel]? = nil) {
+        self.reminderIndex = reminderIndex
         self.reminderList = reminderList
     }
     
     func getTitle() -> String? {
-        return reminder?.title
+        return reminderList?[reminderIndex ?? 0].title
     }
     
     func setTitle(newTitle: String?) {
-        reminder?.title = newTitle
+        reminderList?[reminderIndex ?? 0].title = newTitle
     }
     
     func getDescription() -> String? {
-        return reminder?.description
+        return reminderList?[reminderIndex ?? 0].description
     }
     
     func setDescription(newDescription: String?) {
-        reminder?.description = newDescription
+        reminderList?[reminderIndex ?? 0].description = newDescription
     }
     
     func getDay() -> Date? {
-        return reminder?.day
+        return reminderList?[reminderIndex ?? 0].day
     }
     
     func setDay(newDay: Date?) {
-        reminder?.day = newDay
+        reminderList?[reminderIndex ?? 0].day = newDay
     }
     
     func getTime() -> Date? {
-        return reminder?.time
+        return reminderList?[reminderIndex ?? 0].time
     }
     
     func setTime(newTime: Date?) {
-        reminder?.time = newTime
+        reminderList?[reminderIndex ?? 0].time = newTime
     }
     
     func getReminderList() -> [ReminderModel]? {

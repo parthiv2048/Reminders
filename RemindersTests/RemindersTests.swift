@@ -9,28 +9,58 @@ import XCTest
 @testable import Reminders
 
 final class RemindersTests: XCTestCase {
+    
+    private var reminderAddVM: ReminderAddVM?
+    private var reminderEditVM: ReminderEditVM?
+    private var reminderListVM: ReminderListVM?
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let reminderList = [
+            ReminderModel(
+                title: "Unload Dishwasher",
+                description: "Do it before lunch",
+            ),
+            ReminderModel(
+                title: "Take dog out for a walk",
+                description: "Make sure roads aren't wet",
+            ),
+        ]
+        reminderListVM = ReminderListVM(reminderList: reminderList)
+        reminderAddVM = ReminderAddVM(reminderList: reminderList)
+        reminderEditVM = ReminderEditVM(reminderIndex: 0, reminderList: reminderList)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testReminderAddVM() {
+        let oldReminderList = reminderAddVM?.getReminderList()
+        reminderAddVM?.addReminder(title: "Cook dinner", description: "Beef and broccoli")
+        let newReminderList = reminderAddVM?.getReminderList()
+        XCTAssertEqual(newReminderList?.count, (oldReminderList?.count ?? 0) + 1)
+        XCTAssertEqual(newReminderList?.last?.title, "Cook dinner")
+        XCTAssertEqual(newReminderList?.last?.description, "Beef and broccoli")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testReminderEditVM() {
+        XCTAssertEqual(reminderEditVM?.getTitle(), "Unload Dishwasher")
+        XCTAssertEqual(reminderEditVM?.getDescription(), "Do it before lunch")
+        XCTAssertNil(reminderEditVM?.getDay())
+        XCTAssertNil(reminderEditVM?.getTime())
+        reminderEditVM?.setTitle(newTitle: "Load Dishwasher")
+        reminderEditVM?.setDescription(newDescription: "Do it tomorrow")
+        XCTAssertEqual(reminderEditVM?.getTitle(), "Load Dishwasher")
+        XCTAssertEqual(reminderEditVM?.getDescription(), "Do it tomorrow")
+        XCTAssertNil(reminderEditVM?.getDay())
+        XCTAssertNil(reminderEditVM?.getTime())
+    }
+    
+    func testReminderListVM() {
+        XCTAssertEqual(reminderListVM?.numberOfReminders(), 2)
+        let secondReminder = reminderListVM?.getReminder(at: 1)
+        XCTAssertEqual(secondReminder?.title, "Take dog out for a walk")
+        XCTAssertEqual(secondReminder?.description, "Make sure roads aren't wet")
     }
 
 }

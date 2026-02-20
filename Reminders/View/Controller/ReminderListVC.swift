@@ -101,8 +101,7 @@ extension ReminderListVC: UITableViewDataSource {
 
 extension ReminderListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reminder = reminderListVM?.getReminder(at: indexPath.row)
-        let reminderEditVM = ReminderEditVM(reminder: reminder, reminderList: reminderListVM?.getReminderList())
+        let reminderEditVM = ReminderEditVM(reminderIndex: indexPath.row, reminderList: reminderListVM?.getReminderList())
         let reminderEditVC = ReminderEditVC(reminderEditVM: reminderEditVM)
         self.navigationController?.pushViewController(reminderEditVC, animated: true)
     }
