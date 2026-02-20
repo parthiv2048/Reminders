@@ -64,21 +64,11 @@ class ReminderAddVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction { _ in
-            let selectedDate = self.addDayDP.date
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let reminderDay = dateFormatter.string(from: selectedDate)
-            
-            let selectedTime = self.addTimeDP.date
-            let timeFormatter = DateFormatter()
-            timeFormatter.timeStyle = .short
-            let reminderTime = timeFormatter.string(from: selectedTime)
-            
             self.reminderAddVM?.addReminder(
                 title: self.editTitleTF.text,
                 description: self.editDescriptionTV.text,
-                day: reminderDay,
-                time: reminderTime
+                day: self.addDayDP.date,
+                time: self.addTimeDP.date
             )
             
             let reminderListVM = ReminderListVM(reminderList: self.reminderAddVM?.getReminderList())

@@ -83,6 +83,15 @@ class ReminderListTVC: UITableViewCell {
     func addReminderDetails(reminder: ReminderModel?) {
         titleLabel.text = reminder?.title ?? ""
         descriptionLabel.text = reminder?.description ?? ""
-        timeLabel.text = "Due on \(reminder?.day ?? ""), \(reminder?.time ?? "")"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let reminderDay = dateFormatter.string(from: reminder?.day ?? Date())
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        let reminderTime = timeFormatter.string(from: reminder?.time ?? Date())
+        
+        timeLabel.text = "Due on \(reminderDay), \(reminderTime)"
     }
 }

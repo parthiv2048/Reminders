@@ -5,15 +5,17 @@
 //  Created by Parthiv Ganguly on 2/19/26.
 //
 
+import UIKit
+
 protocol ReminderEditVMProtocol {
     func getTitle() -> String?
     func setTitle(newTitle: String?)
     func getDescription() -> String?
     func setDescription(newDescription: String?)
-    func getDay() -> String?
-    func setDay(newDay: String?)
-    func getTime() -> String?
-    func setTime(newTime: String?)
+    func getDay() -> Date?
+    func setDay(newDay: Date?)
+    func getTime() -> Date?
+    func setTime(newTime: Date?)
     func getReminderList() -> [ReminderModel]?
 }
 
@@ -27,7 +29,7 @@ class ReminderEditVM: ReminderEditVMProtocol {
     }
     
     func getTitle() -> String? {
-        return reminder?.title ?? ""
+        return reminder?.title
     }
     
     func setTitle(newTitle: String?) {
@@ -35,26 +37,26 @@ class ReminderEditVM: ReminderEditVMProtocol {
     }
     
     func getDescription() -> String? {
-        return reminder?.description ?? ""
+        return reminder?.description
     }
     
     func setDescription(newDescription: String?) {
         reminder?.description = newDescription
     }
     
-    func getDay() -> String? {
-        return reminder?.day ?? ""
+    func getDay() -> Date? {
+        return reminder?.day
     }
     
-    func setDay(newDay: String?) {
+    func setDay(newDay: Date?) {
         reminder?.day = newDay
     }
     
-    func getTime() -> String? {
-        return reminder?.time ?? ""
+    func getTime() -> Date? {
+        return reminder?.time
     }
     
-    func setTime(newTime: String?) {
+    func setTime(newTime: Date?) {
         reminder?.time = newTime
     }
     

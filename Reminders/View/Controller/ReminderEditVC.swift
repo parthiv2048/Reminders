@@ -64,20 +64,10 @@ class ReminderEditVC: UIViewController {
         
         button.addAction(UIAction { _ in
             
-            let selectedDate = self.editDayDP.date
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let reminderDay = dateFormatter.string(from: selectedDate)
-            
-            let selectedTime = self.editTimeDP.date
-            let timeFormatter = DateFormatter()
-            timeFormatter.timeStyle = .short
-            let reminderTime = timeFormatter.string(from: selectedTime)
-            
             self.reminderEditVM?.setTitle(newTitle: self.editTitleTF.text)
             self.reminderEditVM?.setDescription(newDescription: self.editDescriptionTV.text)
-            self.reminderEditVM?.setDay(newDay: reminderDay)
-            self.reminderEditVM?.setTime(newTime: reminderTime)
+            self.reminderEditVM?.setDay(newDay: self.editDayDP.date)
+            self.reminderEditVM?.setTime(newTime: self.editTimeDP.date)
             
             let reminderListVM = ReminderListVM(reminderList: self.reminderEditVM?.getReminderList())
             self.navigationController?.pushViewController(ReminderListVC(reminderListVM: reminderListVM), animated: true)
@@ -112,16 +102,8 @@ class ReminderEditVC: UIViewController {
         
         editTitleTF.text = reminderEditVM?.getTitle()
         editDescriptionTV.text = reminderEditVM?.getDescription()
-        
-        let selectedDay = reminderEditVM?.getDay() ?? ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        editDayDP.date = dateFormatter.date(from: selectedDay) ?? Date()
-        
-        let selectedTime = reminderEditVM?.getTime() ?? ""
-        let timeFormatter = DateFormatter()
-        timeFormatter.timeStyle = .short
-        editTimeDP.date = timeFormatter.date(from: selectedTime) ?? Date()
+        editDayDP.date = reminderEditVM?.getDay() ?? Date()
+        editTimeDP.date = reminderEditVM?.getTime() ?? Date()
         
         addConstraints()
     }

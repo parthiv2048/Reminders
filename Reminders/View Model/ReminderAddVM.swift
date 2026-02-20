@@ -5,8 +5,10 @@
 //  Created by Parthiv Ganguly on 2/20/26.
 //
 
+import UIKit
+
 protocol ReminderAddVMProtocol {
-    func addReminder(title: String?, description: String?, day: String?, time: String?)
+    func addReminder(title: String?, description: String?, day: Date?, time: Date?)
     func getReminderList() -> [ReminderModel]?
 }
 
@@ -17,7 +19,7 @@ class ReminderAddVM: ReminderAddVMProtocol {
         self.reminderList = reminderList
     }
     
-    func addReminder(title: String?, description: String?, day: String?, time: String?) {
+    func addReminder(title: String?, description: String?, day: Date?, time: Date?) {
         reminderList?.append(ReminderModel(
             title: title,
             description: description,
