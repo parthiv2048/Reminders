@@ -31,7 +31,11 @@ class ReminderListVC: UIViewController {
     }()
     
     private lazy var addReminderButton = {
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddReminder))
+        let button = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(goToAddReminder),
+        )
         
         return button
     }()

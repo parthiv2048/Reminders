@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E48EE2ED2F48BBE400688EEE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E48EE2EC2F48BBDA00688EEE /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E4A36B312F477B300055B6B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E48EE2EC2F48BBDA00688EEE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E4A36B1A2F477B2C0055B6B1 /* Reminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A36B302F477B300055B6B1 /* RemindersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemindersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A36B3A2F477B300055B6B1 /* RemindersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemindersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +93,7 @@
 		E4A36B112F477B2C0055B6B1 = {
 			isa = PBXGroup;
 			children = (
+				E48EE2EC2F48BBDA00688EEE /* README.md */,
 				E4A36B1C2F477B2C0055B6B1 /* Reminders */,
 				E4A36B332F477B300055B6B1 /* RemindersTests */,
 				E4A36B3D2F477B300055B6B1 /* RemindersUITests */,
@@ -225,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E48EE2ED2F48BBE400688EEE /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
